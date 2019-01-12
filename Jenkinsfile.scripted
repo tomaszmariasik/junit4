@@ -4,7 +4,7 @@ node {
         ansiColor('xterm') {
             try {
                 stage('Preparation') {
-                    git branch: 'mavenWrapper', url: 'https://github.com/tomaszmariasik/junit44.git'
+                    git branch: 'mavenWrapper', url: 'https://github.com/tomaszmariasik/junit4.git'
                 }
                 stage('Build') {
                     sh './mvnw clean package'
@@ -14,7 +14,7 @@ node {
                 }
             }
             catch (ex) {
-                error("Build failed because of you, Radek! ")
+                error("Build failed because of YOU! ")
             }
         }
     }
