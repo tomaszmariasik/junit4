@@ -14,8 +14,7 @@ node {
                 }
             }
             catch (ex) {
-                error("Build failed because of YOU ")
-                currentBuild.PASS
+                error("Build failed because of you, Radek! ")
             }
         }
     }
