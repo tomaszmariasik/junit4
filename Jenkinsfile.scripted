@@ -1,20 +1,22 @@
 node {
-   //def mvnHome
-   timestamps(){
-   ansiColor('xterm') {
-   try {
-   stage('Preparation') { 
-        git branch: 'mavenWrapper', url: 'https://github.com/tomaszmariasik/junit4.git'
-   }
-   stage('Build') {
-        sh './mvnw clean package'
+    //def mvnHome
+    timestamps() {
+        ansiColor('xterm') {
+            try {
+                stage('Preparation') {
+                    git branch: 'mavenWrapper', url: 'https://github.com/tomaszmariasik/junit4.git'
+                }
+                stage('Build') {
+                    sh './mvnw clean package'
+                }
+                stage('Results') {
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
+            catch (ex) {
+                error("Build failed because of YOU ")
+                currentBuild.PASS
+            }
+        }
     }
-   stage('Results') {
-      junit '**/target/surefire-reports/*.xml'
-   }}
-   catch(ex) {
-       error("Build failed because of YOU ")
-   }
-   }
-   }
 }
